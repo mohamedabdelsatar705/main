@@ -25,6 +25,7 @@ class User(models.Model):
 
     USERNAME_FIELD = 'mobile'
     REQUIRED_FIEDS = ['mobile', 'full_name','status']  
+    #comment
 
 
 
