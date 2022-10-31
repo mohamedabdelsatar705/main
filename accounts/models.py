@@ -24,7 +24,9 @@ class User(models.Model):
     type = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'mobile'
-    REQUIRED_FIEDS = ['mobile', 'full_name','status']
+    REQUIRED_FIEDS = ['mobile', 'full_name','status']  
+
+
 
     def _str__(self):
         return self.email
