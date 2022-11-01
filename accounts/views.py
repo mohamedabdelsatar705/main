@@ -1,55 +1,26 @@
 from django.shortcuts import render
-
-# Create your views here.
-from .models import User
-from .serializers import UserSerializer,UserSignupSerializer
+from .serializers import UserSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
-@api_view (['GET','POST'])
-
-def loginView (request):
+@api_view (['POST'])
+def signup (request):
     if request.method == 'POST':
-        serializer = UserSignupSerializer(data=request.data)   
+        serializer = UserSerializer(data=request.data)   
         if serializer.is_valid():
-            serializer.save()        
+            serializer.save()   
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else :
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-@api_view (['POST'])
-def signupStepTow (request):
-    if request.method == 'POST':
-        serializer = UserSerializer(data=request.data)   
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else :
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
-
-
-
-
-
-
-
-# {
-    
-#         "email":"mk@gmail.com",
-#         "password":"2345799999"
-
-
-    
-
-# }
-#        "fullname":"duud",
-#         "email":"",
-#         "username":"vvrjju",
-#         "mobile":"01124209090",
-#         "date_of_birth":"2000-2-2",
-#         "gender":"male"
-          
+# @api_view (['POST'])
+# def signupStepTwo (request):
+#     if request.method == 'POST':
+#         serializer = UserSerializer(data=request.data)   
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         else :
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
